@@ -1,36 +1,27 @@
 class Solution {
-    public int[] intersect(int[] nums1, int[] nums2) {
-        //[4,9,5]
-        //[9,4,9,8,4]
-//        L
-//        R
-
-        //map
-        //4 -> 1
-        //9 -> 1
-        //5 -> 1
-
-        //if map.get(4) >= 1 -> res.add(4)
-
-        // out -> {4, 9}
-
-        Map<Integer, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < nums2.length; i++) {
-            int current = nums2[i];
-            map.put(current, map.getOrDefault(current, 0) + 1);
-        }
-
+        public int[] intersect(int[] nums1, int[] nums2) {
+        //[4,5,9]
+//             L
+        //[4,4,7,8,9]
+//                 R
         List<Integer> result = new ArrayList<>();
-
-        for (int i = 0; i < nums1.length; i++) {
-            int current = nums1[i];
-            if (map.containsKey(current) && map.get(current) > 0) {
-                result.add(current);
-                map.put(current, map.get(current) - 1);
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        
+        int l = 0;
+        int r = 0;
+        while (l < nums2.length && r < nums1.length) {
+            if(nums2[l] == nums1[r]) {
+                result.add(nums2[l]);
+                l++;
+                r++;
+            } else if (nums2[l] < nums1[r]) {
+                l++;
+            } else {
+                r++;
             }
         }
         
-        return  result.stream().mapToInt(i -> i).toArray();
+        return result.stream().mapToInt(i -> i).toArray();
     }
 }
