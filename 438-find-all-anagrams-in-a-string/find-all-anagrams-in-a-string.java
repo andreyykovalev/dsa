@@ -9,21 +9,27 @@ class Solution {
         }
 
         Map<Character, Integer> window = new HashMap<>();
-        int len = p.length();
-
-        for(int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
+        int windowSize = p.length();
+        int left = 0;
+        int right = 0;
+        while(right < s.length()) {
+            char c = s.charAt(right);
             window.put(c, window.getOrDefault(c, 0) + 1);
 
-            if(i >= len) {
-                char rm = s.charAt(i - len);
-                window.put(rm, window.get(rm) - 1);
-                if (window.get(rm) == 0) window.remove(rm);
+            //shink window if big
+            if(right - left + 1 > windowSize) {
+                char remove = s.charAt(left);
+                window.put(remove, window.get(remove) - 1);
+                if(window.get(remove) == 0) {
+                    window.remove(remove);
+                }
+                left++;
             }
-
+            
             if(need.equals(window)) {
-                out.add(i - len + 1);
+                out.add(left);
             }
+            right++;
         }
 
         return out;
