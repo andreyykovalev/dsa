@@ -6,16 +6,20 @@ class Solution {
         // e -> a
         // g -> d
 
-        Set<Character> sSet = new HashSet<>();
-        Set<Character> tSet = new HashSet<>();
-        Set<String> pairSet = new HashSet<>();
+        Map<Character, Integer> sMap = new HashMap<>();
+        Map<Character, Integer> tMap = new HashMap<>();
 
         for(int i = 0; i < s.length(); i++) {
-            sSet.add(s.charAt(i));
-            tSet.add(t.charAt(i));
-            pairSet.add(new String(s.charAt(i) + ":" + t.charAt(i)));
+            if(!sMap.containsKey(s.charAt(i))){
+                sMap.put(s.charAt(i), i);
+            }
+            if(!tMap.containsKey(t.charAt(i))){
+                tMap.put(t.charAt(i), i);
+            }
+            if(sMap.get(s.charAt(i)) != tMap.get(t.charAt(i))) {
+                return false;
+            }
         }
-
-        return sSet.size() == tSet.size() && sSet.size() == pairSet.size();
+        return true;
     }
 }
