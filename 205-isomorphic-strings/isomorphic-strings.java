@@ -1,5 +1,6 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
+        if(s.length() != t.length()) return false;
         //Input: s = "egg", t = "add"
         // egg -> add
         // e -> a
