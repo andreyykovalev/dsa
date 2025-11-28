@@ -5,8 +5,21 @@ class Solution {
         int prevNum = -1;
         for(int i = sArray.length - 1; i >= 0; i--) {
             char c = sArray[i];
+            int num = mapCharToNum(c);
 
-            int num = 0;
+            if(prevNum != -1 && prevNum > num) {
+                number -= num;
+            } else {
+                number += num;
+            }
+
+            prevNum = num;
+        }
+        return number;
+    }
+
+    private int mapCharToNum(char c) {
+                    int num = 0;
         
             if(c == 'I') {
                 num = 1;
@@ -23,14 +36,6 @@ class Solution {
             } else {
                 num = 1000;
             }
-            if(prevNum != -1 && prevNum > num) {
-                number -= num;
-            } else {
-                number += num;
-            }
-
-            prevNum = num;
-        }
-        return number;
+            return num;
     }
 }
