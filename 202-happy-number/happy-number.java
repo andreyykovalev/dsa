@@ -2,14 +2,13 @@ class Solution {
     public boolean isHappy(int n) {
         Set<Integer> seenNumbers = new HashSet<>();
 
-        char[] nAsDigitsArray = String.valueOf(n).toCharArray();
-
         while(true) {
-            nAsDigitsArray = String.valueOf(n).toCharArray();
+            int temp = n;
             int newNum = 0;
-            for(int i = 0; i < nAsDigitsArray.length; i++) {
-                int digit = Integer.parseInt(Character.toString(nAsDigitsArray[i]));
-                newNum +=  (digit * digit);
+            while(temp > 0) {
+                int digit = temp % 10;
+                newNum +=  digit * digit;
+                temp = temp / 10;
             }
             if(newNum == 1) {
                 return true;
