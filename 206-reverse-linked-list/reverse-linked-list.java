@@ -14,22 +14,17 @@ class Solution {
     public ListNode reverseList(ListNode head) {
         if(head == null) return head;
 
-        Stack<ListNode> stack = new Stack<>();
+        ListNode prev = null;
+        ListNode curr = head;
+        
+        while(curr != null) {
+            ListNode newHead = curr.next;
+            curr.next = prev;
 
-        while(head != null) {
-            stack.push(head);
-            head = head.next;
+            prev = curr;
+            curr = newHead;
         }
 
-        ListNode newHead = stack.pop();
-        ListNode temp = newHead;
-
-        while(!stack.isEmpty()) {
-            temp.next = stack.pop();
-            temp = temp.next;
-        }
-
-        temp.next = null;
-        return newHead;
+        return prev;
     }
 }
