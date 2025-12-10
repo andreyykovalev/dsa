@@ -20,7 +20,7 @@ class Solution {
         while(curr != null) {
             ListNode newHead = curr.next;
             curr.next = prev;
-
+//
             prev = curr;
             curr = newHead;
         }
