@@ -21,16 +21,10 @@ class Solution {
             head = head.next;
         }
 
-        int mid = 0;
-        //odd number 5
-        if(counter % 2 != 0) {
-            mid = (counter / 2) + 1;
-        } else {
-            mid = (counter / 2) + 1;
-        }
+        int mid = (counter / 2) + 1;
+
 
         return map.get(mid);
-
 
     }
 }
