@@ -13,12 +13,12 @@ class Solution {
         if(head == null) return null;
 
         Map<Integer, ListNode> map = new HashMap<>();
-        int counter = 1;
+        int counter = 0;
 
         while(head != null) {
+            counter++;
             map.put(counter, head);
             head = head.next;
-            counter++;
         }
 
         int mid = 0;
@@ -26,7 +26,7 @@ class Solution {
         if(counter % 2 != 0) {
             mid = (counter / 2) + 1;
         } else {
-            mid = (counter / 2);
+            mid = (counter / 2) + 1;
         }
 
         return map.get(mid);
