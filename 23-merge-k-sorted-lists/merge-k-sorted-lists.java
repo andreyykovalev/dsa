@@ -22,11 +22,11 @@ class Solution {
         }
         ListNode dummy = new ListNode(0);
         ListNode current = dummy;
-        while(!minHeap.isEmpty()) {
-            ListNode node = new ListNode(minHeap.poll());
-            current.next = node;
-            current = current.next;
 
+        while(!minHeap.isEmpty()) {
+            int value = minHeap.poll();
+            current.next = new ListNode(value);
+            current = current.next;
         }
         return dummy.next;
     }
