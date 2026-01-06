@@ -9,17 +9,14 @@ class Solution {
         if(nums.length == 1) return nums[0];
         if(nums.length == 0) return 0;
 
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
-        for(int i: nums) {
-            maxHeap.offer(i);
+        for(int i = 0; i < nums.length; i++) {
+            minHeap.offer(nums[i]);
+            if(minHeap.size() > k) {
+                minHeap.poll();
+            }
         }
-        int max = Integer.MIN_VALUE;
-
-        while(k > 0) {
-            max = maxHeap.poll();;
-            k--;
-        }
-        return max;
+        return minHeap.poll();
     }
 }
